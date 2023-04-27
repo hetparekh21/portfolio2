@@ -1,0 +1,50 @@
+{% include 'widgets/top.html' %}
+
+<body class="login-img">
+
+    <!-- BACKGROUND-IMAGE -->
+    <div class="">
+
+        <!-- GLOBAL-LOADER -->
+        <div id="global-loader">
+            <img src="{{url_for('static', filename='assets/images/loader.svg')}}" class="loader-img" alt="Loader">
+        </div>
+        <!-- End GLOBAL-LOADER -->
+
+        <!-- PAGE -->
+        <div class="page">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+        <!-- End PAGE -->
+
+    </div>
+
+    {% block js %}
+    <!-- JQUERY JS -->
+    <script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="{{url_for('static', filename='assets/plugins/bootstrap/js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{{url_for('static', filename='assets/plugins/p-scroll/perfect-scrollbar.js')}}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{{url_for('static', filename='assets/js/themeColors.js')}}"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="{{url_for('static', filename='assets/js/custom.js')}}"></script>
+
+    <!-- Custom-switcher -->
+    <script src="{{url_for('static', filename='assets/js/custom-swicher.js')}}"></script>
+
+    <!-- Switcher js -->
+    <script src="{{url_for('static', filename='assets/switcher/js/switcher.js')}}"></script>
+    {% endblock %}
+
+</body>
+
+</html>

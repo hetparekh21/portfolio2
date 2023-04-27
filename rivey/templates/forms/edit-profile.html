@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!--app-content open-->
+<div class="main-content app-content mt-0">
+    <div class="side-app">
+
+        <!-- CONTAINER -->
+        <div class="main-container container-fluid">
+
+            <!-- PAGE-HEADER -->
+            <div class="page-header">
+                <h1 class="page-title">Edit Profile</h1>
+                <div>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- PAGE-HEADER END -->
+
+            <!-- ROW-1 OPEN -->
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Edit Password</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center chat-image mb-5">
+                                <div class="avatar avatar-xxl chat-profile mb-3 brround">
+                                    <a class="" href="profile.html"><img alt="avatar" src="{{url_for('static', filename='assets/images/users/7.jpg')}}" class="brround"></a>
+                                </div>
+                                <div class="main-chat-msg-name">
+                                    <a href="profile.html">
+                                        <h5 class="mb-1 text-dark fw-semibold">Percy Kewshun</h5>
+                                    </a>
+                                    <p class="text-muted mt-0 mb-0 pt-0 fs-13">Web Designer</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">New Password</label>
+                                <div class="wrap-input100 validate-input input-group" id="Password-toggle1">
+                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
+                                    </a>
+                                    <input class="input100 form-control" type="password" placeholder="New Password" autocomplete="new-password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="javascript:void(0)" class="btn btn-primary">Update</a>
+                            <a href="javascript:void(0)" class="btn btn-danger">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Profile</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputname">First Name</label>
+                                        <input type="text" class="form-control" id="exampleInputname" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputname1">Last Name</label>
+                                        <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Last Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Username" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email address" disabled>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="javascript:void(0)" class="btn btn-success my-1">Save</a>
+                            <a href="javascript:void(0)" class="btn btn-danger my-1">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ROW-1 CLOSED -->
+
+        </div>
+        <!--CONTAINER CLOSED -->
+
+    </div>
+</div>
+<!--app-content close-->
+{% endblock %}
+
+
+{% block js %}
+<script src="{{url_for('static', filename='assets/plugins/input-mask/jquery.mask.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/select2.js')}}"></script>
+
+<!-- JQUERY JS -->
+<script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="{{url_for('static', filename='assets/plugins/bootstrap/js/popper.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+
+<!-- SPARKLINE JS-->
+<script src="{{url_for('static', filename='assets/js/jquery.sparkline.min.js')}}"></script>
+
+<!-- Sticky js -->
+<script src="{{url_for('static', filename='assets/js/sticky.js')}}"></script>
+
+<!-- SIDEBAR JS -->
+<script src="{{url_for('static', filename='assets/plugins/sidebar/sidebar.js')}}"></script>
+
+<!-- INTERNAL SELECT2 JS -->
+<script src="{{url_for('static', filename='assets/plugins/select2/select2.full.min.js')}}"></script>
+
+<!-- SIDE-MENU JS-->
+<script src="{{url_for('static', filename='assets/plugins/sidemenu/sidemenu.js')}}"></script>
+
+<!-- TypeHead js -->
+<script src="{{url_for('static', filename='assets/plugins/bootstrap5-typehead/autocomplete.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/typehead.js')}}"></script>
+
+<!-- INTERNAL INDEX JS -->
+<script src="{{url_for('static', filename='assets/js/index1.js')}}"></script>
+
+<!-- Color Theme js -->
+<script src="{{url_for('static', filename='assets/js/themeColors.js')}}"></script>
+
+<!-- CUSTOM JS -->
+<script src="{{url_for('static', filename='assets/js/custom.js')}}"></script>
+
+{% endblock %}
