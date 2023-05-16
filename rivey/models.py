@@ -10,10 +10,10 @@ class User(db.Model, UserMixin):
     last_login = db.Column(db.DateTime(timezone=True), default=func.now())
 
 class Services(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
+    id = db.Column(db.Integer, primary_key=True, )
+    service_title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    image = db.Column(db.String(255), nullable=False, default='default-service.png')
+    image = db.Column(db.String(255), nullable=True, default='default-service.png')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 class Qualification(db.Model):
@@ -23,7 +23,7 @@ class Qualification(db.Model):
     description = db.Column(db.Text, nullable=False)
     start_date = db.Column(db.String(255), nullable=False)
     end_date = db.Column(db.String(255), nullable=True)
-    is_current = db.Column(db.Boolean, nullable=False, default=False)
+    is_current = db.Column(db.Boolean, nullable=True, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 class Experience(db.Model):
@@ -33,7 +33,7 @@ class Experience(db.Model):
     description = db.Column(db.Text, nullable=False)
     start_date = db.Column(db.String(255), nullable=False)
     end_date = db.Column(db.String(255), nullable=True)
-    is_current = db.Column(db.Boolean, nullable=False, default=False)
+    is_current = db.Column(db.Boolean, nullable=True, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 class Messages(db.Model):
@@ -61,19 +61,19 @@ class ProjectCategory(db.Model):
 
 class Projects(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
+    project_title = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
     link = db.Column(db.String(255), nullable=True)
     client = db.Column(db.String(255), nullable=True)
-    image = db.Column(db.String(255), nullable=False, default='default-project.png')
-    category_id = db.Column(db.Integer, db.ForeignKey('project_category.id'), nullable=False)
+    image = db.Column(db.String(255), nullable=True, default='default-project.png')
+    category_id = db.Column(db.Integer, db.ForeignKey('project_category.id', ), nullable=False,)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 class SkillCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)    
 
 class Skills(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -92,29 +92,30 @@ class About(db.Model):
     position = db.Column(db.String(255), nullable=False)
     resume = db.Column(db.String(255), nullable=True)
     experience = db.Column(db.Integer, nullable=False, default=0)
-    image = db.Column(db.String(255), nullable=False, default='default-profile.png')
-    profile_image = db.Column(db.String(255), nullable=False, default='default-profile.png')
+    image = db.Column(db.String(255), nullable=True, default='default-profile.png')
+    profile_image = db.Column(db.String(255), nullable=True, default='default-profile.png')
     age = db.Column(db.Integer, nullable=False, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 class WebsiteSetting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    titie = db.Column(db.String(255), nullable=False)
+    web_title = db.Column(db.String(255), nullable=False)
     seo = db.Column(db.Text, nullable=False)
     email = db.Column(db.String(255), nullable=False)
-    favicon = db.Column(db.String(255), nullable=False, default='default-favicon.png')
-    logo = db.Column(db.String(255), nullable=False, default='default-logo.png')
+    favicon = db.Column(db.String(255), nullable=True, default='default-favicon.png')
+    logo = db.Column(db.String(255), nullable=True, default='default-logo.png')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 class Social(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    facebook = db.Column(db.String(255), nullable=False)
-    twitter = db.Column(db.String(255), nullable=False)
-    instagram = db.Column(db.String(255), nullable=False)
-    linkedin = db.Column(db.String(255), nullable=False)
-    github = db.Column(db.String(255), nullable=False)
-    behance = db.Column(db.String(255), nullable=False)
-    dribbble = db.Column(db.String(255), nullable=False)
-    pinterest = db.Column(db.String(255), nullable=False)
-    youtube = db.Column(db.String(255), nullable=False)
-    stackoverflow = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    facebook = db.Column(db.String(255), nullable=True)
+    twitter = db.Column(db.String(255), nullable=True)
+    instagram = db.Column(db.String(255), nullable=True)
+    linkedin = db.Column(db.String(255), nullable=True)
+    github = db.Column(db.String(255), nullable=True)
+    behance = db.Column(db.String(255), nullable=True)
+    dribble = db.Column(db.String(255), nullable=True)
+    pinterest = db.Column(db.String(255), nullable=True)
+    youtube = db.Column(db.String(255), nullable=True)
+    stackoverflow = db.Column(db.String(255), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)

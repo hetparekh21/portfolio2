@@ -10,11 +10,10 @@
 
             <!-- PAGE-HEADER -->
             <div class="page-header">
-                <h1 class="page-title">Edit Service</h1>
+                <h1 class="page-title">Skill Category</h1>
                 <div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Service {{service}}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Service</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Skill Category</a></li>
                     </ol>
                 </div>
             </div>
@@ -25,27 +24,13 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="needs-validation" action="/edit-service" enctype = "multipart/form-data" method="POST" novalidate>
+                            <form class="needs-validation" novalidate action="/add-skill-category" method="POST">
                                 <div class="form-row">
-                                    <input type="hidden" name="service_id" value="{{service.id}}">
+                                    <input type="hidden" name="id" value="{{cat.id}}">
                                     <div class="col-xl-12 mb-3">
-                                        <label for="validationCustom01">Title</label>
+                                        <label for="validationCustom01">Category Title</label>
                                         <input type="text" class="form-control" id="validationCustom01" name="title"
-                                            value="{{service.service_title}}" required>
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                    <div class="col-xl-12 mb-3">
-                                        <label for="validationTextarea">Description</label> 
-                                        <textarea class="form-control" id="validationTextarea" name="description"
-                                            placeholder="" required>{{service.description}}</textarea>
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                    <div class="col-xl-12 mb-3">
-                                        <label for="validationCustom01">Image</label>
-                                        <div class="form-file">
-                                            <input type="file" class="form-control" name="image"
-                                                id="validatedInputGroupCustomFile" accept="image/*">
-                                        </div>
+                                            value="{{cat.name}}" required>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                 </div>
@@ -59,18 +44,6 @@
         </div>
         <!-- CONTAINER CLOSED -->
     </div>
-    {% if message %}
-        <div class="position-fixed bottom-0 end-0 p-3">
-            <div class="toast align-items-center text-white bg-{{message['status']}} border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        {{message['message']}}
-                    </div>
-                    <button aria-label="Close" class="btn-close fs-20 ms-auto mt-2 pe-2" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
-                </div>
-            </div>
-        </div>
-        {% endif %}
 </div>
 <!--app-content closed-->
 {% endblock %}
@@ -123,17 +96,9 @@
 
 <!-- Switcher js -->
 <script src="{{url_for('static', filename='assets/switcher/js/switcher.js')}}"></script>
-
-<script>
-    // if current-study-toggle is checked, then disable end-date-study input and make required false
-    $('#current-study-toggle').change(function () {
-        if ($(this).prop('checked')) {
-            $('#end-date-study').prop('disabled', true);
-            $('#end-date-study').prop('required', false);
-        } else {
-            $('#end-date-study').prop('disabled', false);
-            $('#end-date-study').prop('required', true);
-        }
-    });
-</script>
 {% endblock %}
+
+            
+       
+
+    

@@ -8,15 +8,18 @@ from datetime import timedelta
 # creating database
 db = SQLAlchemy()
 DB_NAME = "rivey.db"
+UPLOAD_FOLDER = '/rivey/static/uploads'
 
 
 # main function to create flask app
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'DEV'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     # adding configuration for using a sqlite database
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
     app.permanent_session_lifetime = timedelta(minutes=60)
@@ -51,5 +54,6 @@ def create_app():
 # function to create database if not exists
 def create_database(app):
     with app.app_context():
-        db.create_all()
-        print('Created Database!')
+        if not path.exists('instance/' + DB_NAME):
+            db.create_all()
+            print('Created Database!')

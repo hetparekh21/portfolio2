@@ -10,11 +10,10 @@
 
             <!-- PAGE-HEADER -->
             <div class="page-header">
-                <h1 class="page-title">Add Client</h1>
+                <h1 class="page-title">Website Setting</h1>
                 <div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Client</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Client</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Edit Website Setting</a></li>
                     </ol>
                 </div>
             </div>
@@ -25,19 +24,39 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
+                            <form class="needs-validation" novalidate action="/website-setting" enctype="multipart/form-data" method="POST">
                                 <div class="form-row">
                                     <div class="col-xl-12 mb-3">
-                                        <label for="validationCustom01">Name</label>
-                                        <input type="text" class="form-control" id="validationCustom01" name="name"
-                                            value="" required>
+                                        <label for="validationCustom01">Website Title</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="title"
+                                            value="{{website.web_title}}" required>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                     <div class="col-xl-12 mb-3">
-                                        <label for="validationCustom01">Image</label>
+                                        <label for="validationCustom01">Webmaster Email</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="email"
+                                            value="{{website.email}}" required>
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <label for="validationTextarea">SEO</label>
+                                        <textarea class="form-control" id="validationTextarea" name="seo"
+                                            placeholder="" required>{{website.seo}}</textarea>
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <label for="validationCustom01">Favicon</label>
                                         <div class="form-file">
-                                            <input type="file" class="form-control"
-                                                id="validatedInputGroupCustomFile" accept="image/*" required name="image">
+                                            <input type="file" class="form-control" name="favicon"
+                                                id="validatedInputGroupCustomFile" accept="image/*" >
+                                        </div>
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <label for="validationCustom01">Logo</label>
+                                        <div class="form-file">
+                                            <input type="file" class="form-control" name="logo"
+                                                id="validatedInputGroupCustomFile" accept="image/*" >
                                         </div>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
@@ -104,17 +123,9 @@
 
 <!-- Switcher js -->
 <script src="{{url_for('static', filename='assets/switcher/js/switcher.js')}}"></script>
-
-<script>
-    // if current-study-toggle is checked, then disable end-date-study input and make required false
-    $('#current-study-toggle').change(function () {
-        if ($(this).prop('checked')) {
-            $('#end-date-study').prop('disabled', true);
-            $('#end-date-study').prop('required', false);
-        } else {
-            $('#end-date-study').prop('disabled', false);
-            $('#end-date-study').prop('required', true);
-        }
-    });
-</script>
 {% endblock %}
+
+            
+       
+
+    

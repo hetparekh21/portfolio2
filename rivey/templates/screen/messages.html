@@ -43,6 +43,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for message in messages %}
                                         <tr class="border-bottom">
                                             <td class="text-center">
                                                 <div class="mt-0 mt-sm-2 d-block">
@@ -82,11 +83,13 @@
                                                 <div class="g-2">
                                                     <a class="btn text-danger btn-sm"
                                                         data-bs-toggle="tooltip"
+                                                        href="/delete-message/{{message.id}}"
                                                         data-bs-original-title="Delete"><span
                                                             class="fe fe-trash-2 fs-14"></span></a>
                                                 </div>
                                             </td>
                                         </tr>
+                                        {% endfor %}    
                                     </tbody>
                                 </table>
                             </div>

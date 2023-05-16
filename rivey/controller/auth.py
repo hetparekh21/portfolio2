@@ -28,29 +28,29 @@ def login():
                     'message': 'Please verify your email first'
                 }
             else:  
-                session['is_logged'] = True
                 session['email'] = user['email']
-                session['user_id'] = user['localId']
-                session['id_token'] = user['idToken']
                 session['refresh_token'] = user['refreshToken']
 
                 dbuser = User.query.filter_by(email=email).first()
                 if dbuser!=None:
                     login_user(dbuser, remember=True, duration=timedelta(minutes=60))
+
+                session['username'] = dbuser.username
+                session['user_id'] = dbuser.id                
                 
                 message = {
                     'status': 'success',
                     'message': 'Logged in successfully'
                 }
 
-                # return redirect(url_for('views.home'))
+                return redirect(url_for('views.home'))
             
         except Exception as e:
             # template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             # message = template.format(type(e).__name__, e.args)
             message = {
                 'status': 'danger',
-                'message': 'Invalid email or password'
+                'message': 'Invalid email or password' + str(e)
             }
 
     return render_template('auth/login.html', message=message)
@@ -117,7 +117,6 @@ def forgotPassword():
         return render_template('auth/login.html', message=message)
     return render_template('auth/forgot-password.html', message=message)
 
-
 @authv.route('/logout',methods=['GET'])
 @login_required
 def logout():
@@ -126,5 +125,23 @@ def logout():
 
 def clearUser():
     auth.current_user = None
-    logout_user()
+    logout_user() 
     session.clear()
+
+@authv.route('/reset-password', methods=['GET', 'POST'])
+def resetPassword():
+    message = ""
+    email = session['email']
+    try:
+        auth.send_password_reset_email(email)
+        message = {
+            'status': 'success',
+            'message': 'Password reset email sent, please check your email inbox'
+        }
+    except:
+        message = {
+            'status': 'danger',
+            'message': 'Something went wrong, please try again'
+        }
+
+    return render_template('forms/edit-profile.html', message=message)

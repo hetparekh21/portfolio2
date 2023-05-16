@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!--app-content open-->
+<div class="main-content app-content mt-0">
+    <div class="side-app">
+
+        <!-- CONTAINER -->
+        <div class="main-container container-fluid">
+
+            <!-- PAGE-HEADER -->
+            <div class="page-header">
+                <h1 class="page-title">Social Information</h1>
+                <div>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Edit Social Information</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- PAGE-HEADER END -->
+
+            <!-- ROW OPEN -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="needs-validation" novalidate action="/social" method="POST">
+                                <div class="form-row">
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Facebook</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="facebook"
+                                            value="{{social.facebook}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Twitter</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="twitter"
+                                            value="{{social.twitter}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Instagram</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="instagram"
+                                            value="{{social.instagram}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Linkedin</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="linkedin"
+                                            value="{{social.linkedin}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Github</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="github"
+                                            value="{{social.github}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Behance</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="behance"
+                                            value="{{social.behance}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Dribble</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="dribble"
+                                            value="{{social.dribble}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Pinterest</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="pinterest"
+                                            value="{{social.pinterest}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Youtube</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="youtube"
+                                            value="{{social.youtube}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="validationCustom01">Stackoverflow</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="stackoverflow"
+                                            value="{{social.stackoverflow}}" >
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Submit form</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ROW CLOSED -->
+        </div>
+        <!-- CONTAINER CLOSED -->
+    </div>
+</div>
+<!--app-content closed-->
+{% endblock %}
+
+
+
+{% block js %}
+<!-- JQUERY JS -->
+<script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="{{url_for('static', filename='assets/plugins/bootstrap/js/popper.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+
+<!-- INPUT MASK JS-->
+<script src="{{url_for('static', filename='assets/plugins/input-mask/jquery.mask.min.js')}}"></script>
+
+<!-- TypeHead js -->
+<script src="{{url_for('static', filename='assets/plugins/bootstrap5-typehead/autocomplete.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/typehead.js')}}"></script>
+
+<!-- SELECT2 JS -->
+<script src="{{url_for('static', filename='assets/plugins/select2/select2.full.min.js')}}"></script>
+
+<!-- FORMVALIDATION JS -->
+<script src="{{url_for('static', filename='assets/js/form-validation.js')}}"></script>
+
+<!-- Perfect SCROLLBAR JS-->
+<script src="{{url_for('static', filename='assets/plugins/p-scroll/perfect-scrollbar.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/p-scroll/pscroll.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/p-scroll/pscroll-1.js')}}"></script>
+
+<!-- SIDE-MENU JS -->
+<script src="{{url_for('static', filename='assets/plugins/sidemenu/sidemenu.js')}}"></script>
+
+<!-- SIDEBAR JS -->
+<script src="{{url_for('static', filename='assets/plugins/sidebar/sidebar.js')}}"></script>
+
+<!-- Color Theme js -->
+<script src="{{url_for('static', filename='assets/js/themeColors.js')}}"></script>
+
+<!-- Sticky js -->
+<script src="{{url_for('static', filename='assets/js/sticky.js')}}"></script>
+
+<!-- CUSTOM JS -->
+<script src="{{url_for('static', filename='assets/js/custom.js')}}"></script>
+
+<!-- Custom-switcher -->
+<script src="{{url_for('static', filename='assets/js/custom-swicher.js')}}"></script>
+
+<!-- Switcher js -->
+<script src="{{url_for('static', filename='assets/switcher/js/switcher.js')}}"></script>
+{% endblock %}
+
+            
+       
+
+    

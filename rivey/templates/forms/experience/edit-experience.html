@@ -25,32 +25,25 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
+                            <form class="needs-validation" " enctype = "multipart/form-data" method="POST" novalidate action="/edit-experience">
                                 <div class="form-row">
+                                    <input type="hidden" name="id" value="{{experience.id}}">
                                     <div class="col-xl-12 mb-3">
                                         <label for="validationCustom01">Company</label>
                                         <input type="text" class="form-control" id="validationCustom01" name="company"
-                                            value="" required>
+                                            value="{{experience.company}}" required>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                     <div class="col-xl-12 mb-3">
                                         <label for="validationCustom01">Position</label>
                                         <input type="text" class="form-control" id="validationCustom01" name="position"
-                                            value="" required>
+                                            value="{{experience.position}}" required>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                     <div class="col-xl-12 mb-3">
                                         <label for="validationTextarea">Description</label>
                                         <textarea class="form-control" id="validationTextarea" name="description"
-                                            placeholder="" required></textarea>
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                    <div class="col-xl-12 mb-3">
-                                        <label for="validationCustom01">Image</label>
-                                        <div class="form-file">
-                                            <input type="file" class="form-control" name="image"
-                                                id="validatedInputGroupCustomFile" accept="image/*" required>
-                                        </div>
+                                            placeholder="" required>{{experience.description}}</textarea>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                     <div class="col-xl mb-3">
@@ -60,7 +53,7 @@
                                                 <div class="input-group-text">
                                                     <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                                 </div><input class="form-control fc-datepicker" name="start_date"
-                                                    placeholder="MM/DD/YYYY" type="text" id="start-date-work" required>
+                                                    placeholder="MM/DD/YYYY" type="date" value="{{experience.start_date}}" id="start-date-work" required>
                                             </div>
                                         </div>
                                         <div class="valid-feedback">Looks good!</div>
@@ -74,7 +67,9 @@
                                                         <div class="input-group-text">
                                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                                         </div><input class="form-control fc-datepicker" name="end_date"
-                                                            placeholder="MM/DD/YYYY" id="end-date-work" type="text" required>
+                                                            placeholder="MM/DD/YYYY" value="{{experience.end_date}}" id="end-date-work" type="date" required{% if experience.is_current %}
+                                                            disabled
+                                                            {% endif %}>
                                                     </div>
                                                 </div>
                                                 <div class="valid-feedback">Looks good!</div>
@@ -83,7 +78,9 @@
                                                 <div class="form-group">
                                                     <label class="custom-switch form-switch mb-0">
                                                         <input type="checkbox" id="current-work-toggle" name="current"
-                                                            class="custom-switch-input">
+                                                            class="custom-switch-input" {% if experience.is_current %}
+                                                            checked
+                                                            {% endif %}>
                                                         <span class="custom-switch-indicator"></span>
                                                         <span class="custom-switch-description">Currently
                                                             Working</span>
@@ -103,6 +100,19 @@
         </div>
         <!-- CONTAINER CLOSED -->
     </div>
+
+    {% if message %}
+        <div class="position-fixed bottom-0 end-0 p-3">
+            <div class="toast align-items-center text-white bg-{{message['status']}} border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{message['message']}}
+                    </div>
+                    <button aria-label="Close" class="btn-close fs-20 ms-auto mt-2 pe-2" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
 </div>
 <!--app-content closed-->
 {% endblock %}

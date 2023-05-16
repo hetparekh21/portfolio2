@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!--app-content open-->
+<div class="main-content app-content mt-0">
+    <div class="side-app">
+
+        <!-- CONTAINER -->
+        <div class="main-container container-fluid">
+
+            <!-- PAGE-HEADER -->
+            <div class="page-header">
+                <h1 class="page-title">Services</h1>
+                <div>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Service</li>
+                    </ol>
+                </div>
+
+            </div>
+            <!-- PAGE-HEADER END -->
+            <!-- Row -->
+            <div class="row row-sm">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <a id="button" class="btn btn-primary mb-4 data-table-btn" href="/add-service">Add
+                                    Service</a>
+                                <table id="example2" class="table table-bordered text-nowrap border-bottom">
+                                    <thead class="border-top">
+                                        <tr>
+                                            <th class="bg-transparent border-bottom-0" style="width: 5%;">Sr No.</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Title</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Description
+                                            </th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Image</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for service in services %}
+                                        <tr class="border-bottom">
+                                            <td class="text-center">
+                                                <div class="mt-0 mt-sm-2 d-block">
+                                                    <h6 class="mb-0 fs-14 fw-semibold">
+                                                        {{service.id}}</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="ms-3 mt-0 mt-sm-2 d-block">
+                                                        <h6 class="mb-0 fs-14 fw-semibold">
+                                                            {{service.service_title}}</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    
+                                                    <div class="ms-3 mt-0 mt-sm-2 d-block">
+                                                        <h6 class="mb-0 fs-14 fw-semibold">
+                                                            {{service.description}}</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="ms-3 mt-0 mt-sm-2 d-block">
+                                                        <img src="{{url_for('static', filename=''+service.image+'')}}"
+                                                            alt="" srcset="" width="50">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="g-2">
+                                                    <a class="btn text-primary btn-sm" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Edit"href="/edit-service/{{service.id}}" > <span
+                                                            class="fe fe-edit fs-14"></span></a>
+                                                    <a class="btn text-danger btn-sm" href="/delete-service/{{service.id}}" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Delete"><span
+                                                            class="fe fe-trash-2 fs-14"></span></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- CONTAINER CLOSED -->
+
+    </div>
+</div>
+<!--app-content closed-->
+{% endblock %}
+
+
+{% block js %}
+<!-- JQUERY JS -->
+<script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="{{url_for('static', filename='assets/plugins/bootstrap/js/popper.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+
+<!-- INPUT MASK JS-->
+<script src="{{url_for('static', filename='assets/plugins/input-mask/jquery.mask.min.js')}}"></script>
+
+<!-- TypeHead js -->
+<script src="{{url_for('static', filename='assets/plugins/bootstrap5-typehead/autocomplete.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/typehead.js')}}"></script>
+
+<!-- INTERNAL SELECT2 JS -->
+<script src="{{url_for('static', filename='assets/plugins/select2/select2.full.min.js')}}"></script>
+
+<!-- DATA TABLE JS-->
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/jszip.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/responsive.bootstrap5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/table-data.js')}}"></script>
+
+<!-- Perfect SCROLLBAR JS-->
+<script src="{{url_for('static', filename='assets/plugins/p-scroll/perfect-scrollbar.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/p-scroll/pscroll.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/p-scroll/pscroll-1.js')}}"></script>
+
+<!-- SIDE-MENU JS -->
+<script src="{{url_for('static', filename='assets/plugins/sidemenu/sidemenu.js')}}"></script>
+
+<!-- SIDEBAR JS -->
+<script src="{{url_for('static', filename='assets/plugins/sidebar/sidebar.js')}}"></script>
+
+<!-- Color Theme js -->
+<script src="{{url_for('static', filename='assets/js/themeColors.js')}}"></script>
+
+<!-- Sticky js -->
+<script src="{{url_for('static', filename='assets/js/sticky.js')}}"></script>
+
+<!-- CUSTOM JS -->
+<script src="{{url_for('static', filename='assets/js/custom.js')}}"></script>
+
+<!-- Custom-switcher -->
+<script src="{{url_for('static', filename='assets/js/custom-swicher.js')}}"></script>
+
+<!-- Switcher js -->
+<script src="{{url_for('static', filename='assets/switcher/js/switcher.js')}}"></script>
+{% endblock %}
