@@ -34,61 +34,52 @@
                                 </div>
                                 <div class="main-chat-msg-name">
                                     <a href="profile.html">
-                                        <h5 class="mb-1 text-dark fw-semibold">Percy Kewshun</h5>
+                                        <h5 class="mb-1 text-dark fw-semibold">{{first_name}} {{last_name}}</h5>
                                     </a>
-                                    <p class="text-muted mt-0 mb-0 pt-0 fs-13">Web Designer</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">New Password</label>
-                                <div class="wrap-input100 validate-input input-group" id="Password-toggle1">
-                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                        <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
-                                    </a>
-                                    <input class="input100 form-control" type="password" placeholder="New Password" autocomplete="new-password">
-                                </div>
+                            <div class="text-center">
+                                <a href="/" class="btn btn-primary text-center">Reset Password</a>
                             </div>
-                        </div>
-                        <div class="card-footer text-end">
-                            <a href="javascript:void(0)" class="btn btn-primary">Update</a>
-                            <a href="javascript:void(0)" class="btn btn-danger">Cancel</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Edit Profile</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputname">First Name</label>
-                                        <input type="text" class="form-control" id="exampleInputname" placeholder="First Name">
+                    <form action="" method="POST">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Edit Profile</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputname">First Name</label>
+                                            <input type="text" class="form-control" id="exampleInputname" placeholder="First Name" value="{{firstname}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputname1">Last Name</label>
+                                            <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Last Name" value="{{lastname}}">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputname1">Last Name</label>
-                                        <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Last Name">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Username</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Username" disabled value="{{username}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email address" disabled value="{{email}}" readonly>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Username" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email address" disabled>
+                            <div class="card-footer text-end">
+                                <input type="submit" value="Save" class="btn btn-success my-1">
+                                <input type="reset" value="Cancel" class="btn btn-danger my-1">
                             </div>
                         </div>
-                        <div class="card-footer text-end">
-                            <a href="javascript:void(0)" class="btn btn-success my-1">Save</a>
-                            <a href="javascript:void(0)" class="btn btn-danger my-1">Cancel</a>
-                        </div>
-                    </div>
+                    </form>
 
                 </div>
             </div>

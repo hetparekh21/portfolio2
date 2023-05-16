@@ -1,0 +1,99 @@
+{% include 'widgets/top.html' %}
+<body class="app sidebar-mini ltr login-img">
+
+    <!-- BACKGROUND-IMAGE -->
+    <div class="">
+
+        <!-- GLOABAL LOADER -->
+        <div id="global-loader">
+            <img src="{{url_for('static', filename='assets/images/loader.svg')}}" class="loader-img" alt="Loader">
+        </div>
+        <!-- /GLOABAL LOADER -->
+
+        <!-- PAGE -->
+        <div class="page">
+            <div class="">
+                <!-- Theme-Layout -->
+                <div class="container-login100">
+                    <div class="wrap-login100 p-6">
+                        <form class="login100-form validate-form" action="signup" method="POST">
+                            <span class="login100-form-title">
+									Registration
+								</span>
+                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="mdi mdi-account" aria-hidden="true"></i>
+                                </a>
+                                <input class="input100 border-start-0 ms-0 form-control" type="text" placeholder="User name" name="username" required minlength="3">
+                            </div>
+                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="zmdi zmdi-email" aria-hidden="true"></i>
+                                </a>
+                                <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email" name="email" required>
+                            </div>
+                            <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="zmdi zmdi-eye" aria-hidden="true"></i>
+                                </a>
+                                <input class="input100 border-start-0 ms-0 form-control" type="password" placeholder="Password" name="password" required minlength="8">
+                            </div>
+                            <div class="container-login100-form-btn">
+                                <input type="submit" value="Register" class="login100-form-btn btn-primary">
+                            </div>
+                            <div class="text-center pt-3">
+                                <p class="text-dark mb-0 d-inline-flex">Already have account ?<a href="login" class="text-primary ms-1">Sign In</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- CONTAINER CLOSED -->
+            </div>
+        </div>
+        <!-- END PAGE -->
+
+        {% if message %}
+        <div class="position-fixed bottom-0 end-0 p-3">
+            <div class="toast align-items-center text-white bg-{{message['status']}} border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{message['message']}}
+                    </div>
+                    <button aria-label="Close" class="btn-close fs-20 ms-auto mt-2 pe-2" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!-- End PAGE -->
+
+    </div>
+    <!-- BACKGROUND-IMAGE CLOSED -->
+
+    <!-- JQUERY JS -->
+    <script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="{{url_for('static', filename='assets/plugins/bootstrap/js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+
+    <!-- SHOW PASSWORD JS -->
+    <script src="{{url_for('static', filename='assets/js/show-password.min.js')}}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{{url_for('static', filename='assets/plugins/p-scroll/perfect-scrollbar.js')}}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{{url_for('static', filename='assets/js/themeColors.js')}}"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="{{url_for('static', filename='assets/js/custom.js')}}"></script>
+
+    <!-- Custom-switcher -->
+    <script src="{{url_for('static', filename='assets/js/custom-swicher.js')}}"></script>
+
+    <!-- Switcher js -->
+    <script src="{{url_for('static', filename='assets/switcher/js/switcher.js')}}"></script>
+
+</body>
+
+</html>
