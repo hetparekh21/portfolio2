@@ -5,8 +5,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}
-    {% endblock %}</title>
+  <title>{{website.web_title}}</title>
+  <meta name="webmaster" content="{{website.email}}">
+  <meta name="description" content="{{website.seo}}">
 
   <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='portfolio/images/favicon.ico')}}">
   <!-- Google fonts -->
@@ -23,6 +24,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <!-- Tailwind css -->
   <link rel="stylesheet" href="{{url_for('static', filename='portfolio/css/styles.css')}}" />
+  
+  
 
   <script>
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -286,9 +289,11 @@
               <!-- Profile image start -->
               <div class="text-center pb-6 relative z-10 sm:px-4 lg:px-11">
                 <div class="pb-5">
+                  {% if about != None %}
                   <img
                     class="md:w-[250px] md:h-[250px] lg:w-[290px] lg:h-[290px] rounded-full mx-auto border border-accent1 p-1"
                     src="{{ url_for('static', filename=''+about.profile_image)}}" alt="">
+                  {% endif %}
                 </div>
                 <h4 class="text-primary">{{about.firstname}} {{about.lastname}}</h4>
                 <span>{{about.position}}</span>
@@ -382,12 +387,14 @@
     <!-- Footer end -->
   </div>
 
+  {% if about != None %}
   <!-- make a script to download cv -->
   <script>
     function downloadCV() {
       window.open("{{url_for('static', filename=''+about.resume)}}", "_blank");
     }
   </script>
+  {% endif %}
 
 
   <!-------- Plugins js ------>

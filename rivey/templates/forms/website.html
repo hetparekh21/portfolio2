@@ -52,15 +52,17 @@
                                         </div>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
+                                    {% if website != None %}
                                     <div class="col-xl-3 mb-3">
                                         <label for="validationCustom01">Favicon</label>
                                         <div class="form-file">
-                                            <img src="{{ url_for('static', filename=''+website.favicon) }}"
+                                            <img src="{{ url_for('static', filename=''+ website.favicon) }}"
                                                             alt="" srcset="" width="75">    
                                         </div>
                                         
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
+                                    {% endif %}
                                     <div class="col-xl-9 mb-3">
                                         <label for="validationCustom01">Logo</label>
                                         <div class="form-file">
@@ -70,15 +72,17 @@
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
 
-                                    <div class="col-xl-3 mb-3 ">
-                                        <label for="validationCustom01">Logo</label>
-                                        <div class="form-file">
-                                            <img src="{{ url_for('static', filename=''+website.logo) }}"
-                                                            alt="" srcset="" width="75">    
-                                        </div>
-                                        
-                                        <div class="valid-feedback">Looks good!</div>
+                                   {% if website != None %}
+                                   <div class="col-xl-3 mb-3 ">
+                                    <label for="validationCustom01">Logo</label>
+                                    <div class="form-file">
+                                        <img src="{{ url_for('static', filename=''+website.logo) }}"
+                                                        alt="" srcset="" width="75">    
                                     </div>
+                                    
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                                   {% endif %}
                                 </div>
                                 <button class="btn btn-primary" type="submit">Submit form</button>
                             </form>

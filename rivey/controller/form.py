@@ -80,7 +80,7 @@ def addService():
             # fetch image extension
             image_ext = image.filename.split('.')[-1]
 
-            date = date
+            date = str(datetime.now())
             date = date.replace(':', '')
             date = date.replace(' ', '_')
 

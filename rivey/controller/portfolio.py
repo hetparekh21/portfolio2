@@ -14,37 +14,42 @@ def portfolio_page(id):
     about = About.query.filter_by(user_id=int(userId)).first()
     social = Social.query.filter_by(user_id=int(userId)).first()
     contact = Contact.query.filter_by(user_id=int(userId)).first()
+    website = WebsiteSetting.query.filter_by(user_id=int(userId)).first()
 
-
-    return render_template('portfolio/index.html', about=about, social=social, contact=contact, userId=userId)
+    return render_template('portfolio/index.html', about=about, social=social, contact=contact, userId=userId, website=website)
 
 @portfolio.route('/about/<id>')
 def about_page(id):
     userId = id
     about = About.query.filter_by(user_id=int(userId)).first()
+    if about is None:
+        about = {'profile_image' : '', 'image' : ''}
     skills = Skills.query.filter_by(user_id=int(userId)).all()
     education = Qualification.query.filter_by(user_id=int(userId)).all()
     experience = Experience.query.filter_by(user_id=int(userId)).all()
     contact = Contact.query.filter_by(user_id=int(userId)).first()
+    website = WebsiteSetting.query.filter_by(user_id=int(userId)).first()
 
     # sort education by start_date
     education.sort(key=lambda x: x.start_date, reverse=True)
     experience.sort(key=lambda x: x.start_date, reverse=True)
 
-    return render_template('portfolio/about.html', about=about, skills=skills, education=education, experience=experience, contact=contact, userId=userId)
+    return render_template('portfolio/about.html', about=about, skills=skills, education=education, experience=experience, contact=contact, userId=userId, website=website)
 
 @portfolio.route('/contact/<id>')
 def contact_page(id):
     userId = id
     contact = Contact.query.filter_by(user_id=int(userId)).first()
-    return render_template('portfolio/contact.html', contact=contact, userId=userId)
+    website = WebsiteSetting.query.filter_by(user_id=int(userId)).first()
+    return render_template('portfolio/contact.html', contact=contact, userId=userId, website=website)
 
 @portfolio.route('/portfolio/<id>')
 def projects_page(id):
     userId = id
     projects = Projects.query.filter_by(user_id=int(userId)).all()
     category = ProjectCategory.query.filter_by(user_id=int(userId)).all()
-    return render_template('portfolio/portfolio.html', projects=projects, category=category, userId=userId)
+    website = WebsiteSetting.query.filter_by(user_id=int(userId)).first()
+    return render_template('portfolio/portfolio.html', projects=projects, category=category, userId=userId, website=website)
 
 @portfolio.route('/services/<id>')
 def services_page(id):
@@ -52,8 +57,9 @@ def services_page(id):
 
     # fetch services from database
     services = Services.query.filter_by(user_id=int(userId)).all()
+    website = WebsiteSetting.query.filter_by(user_id=int(userId)).first()
 
-    return render_template('portfolio/services.html', services=services, userId=userId)
+    return render_template('portfolio/services.html', services=services, userId=userId, website=website)
 
 # add message to database
 @portfolio.route('/send-message', methods=['POST'])
