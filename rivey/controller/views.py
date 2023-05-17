@@ -12,13 +12,15 @@ views = Blueprint('views', __name__)
 def home():
     userId = session['user_id']
 
+    # today date in 2023-05-17 format
+    today = datetime.today().strftime('%Y-%m-%d')
+    print(today)
+    print("=====================================")
+
     # fetch all messages
-    messages = db.session.execute("SELECT * FROM messages WHERE user_id = :userId", {"userId": userId}).fetchall()
-    # filter messages by current date
-    today_message = []
-    for message in messages:
-        if message[3] == datetime.now().strftime("%Y-%m-%d"):
-            today_message.append(message)
+    messages = db.session.execute("SELECT * FROM messages WHERE user_id = :userId and date like '"+str(today)+"%'", {"userId": userId, "today" : today}).fetchall()
+    
+
 
     # count all messages
     count_messages = db.session.execute("SELECT COUNT(*) FROM messages WHERE user_id = :userId", {"userId": userId}).fetchone()
@@ -38,7 +40,7 @@ def home():
         "count_projects": count_projects[0],
         "count_skills": count_skills[0],
     }
-    return render_template('screen/index.html', message=today_message, data=data)
+    return render_template('screen/index.html', messages=messages, data=data)
 
 @views.route("/messages")
 @login_required

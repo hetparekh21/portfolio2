@@ -44,7 +44,7 @@
                                             placeholder="" required>{{website.seo}}</textarea>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
-                                    <div class="col-xl-12 mb-3">
+                                    <div class="col-xl-9 mb-3">
                                         <label for="validationCustom01">Favicon</label>
                                         <div class="form-file">
                                             <input type="file" class="form-control" name="favicon"
@@ -52,12 +52,31 @@
                                         </div>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
-                                    <div class="col-xl-12 mb-3">
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="validationCustom01">Favicon</label>
+                                        <div class="form-file">
+                                            <img src="{{ url_for('static', filename=''+website.favicon) }}"
+                                                            alt="" srcset="" width="75">    
+                                        </div>
+                                        
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-9 mb-3">
                                         <label for="validationCustom01">Logo</label>
                                         <div class="form-file">
                                             <input type="file" class="form-control" name="logo"
                                                 id="validatedInputGroupCustomFile" accept="image/*" >
                                         </div>
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+
+                                    <div class="col-xl-3 mb-3 ">
+                                        <label for="validationCustom01">Logo</label>
+                                        <div class="form-file">
+                                            <img src="{{ url_for('static', filename=''+website.logo) }}"
+                                                            alt="" srcset="" width="75">    
+                                        </div>
+                                        
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                 </div>

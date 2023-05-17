@@ -57,24 +57,24 @@
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                     <div class="col-xl-6 mb-3">
-                                        <label for="validationCustom01">About Me Title</label>
-                                        <input type="text" class="form-control" id="validationCustom01" name="about_title"
-                                            value="{{about.about_title}}" >
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                    <div class="col-xl-6 mb-3">
                                         <label for="validationCustom01">Experience</label>
                                         <input type="number" class="form-control" id="validationCustom01" name="experience"
                                             value="{{about.experience}}" >
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                     <div class="col-xl-12 mb-3">
-                                        <label for="validationTextarea">About Me Description</label>
-                                        <textarea class="form-control" id="validationTextarea" name="about_description"
-                                            placeholder="{{about.about_me}}" ></textarea>
+                                        <label for="validationCustom01">About Me Title</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="about_title"
+                                            value="{{about.about_title}}" >
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                     <div class="col-xl-12 mb-3">
+                                        <label for="validationTextarea">About Me Description</label>
+                                        <textarea class="form-control" id="validationTextarea" name="about_description"
+                                            placeholder="" >{{about.about_me}}</textarea>
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-8 mb-5">
                                         <label for="validationCustom01">Profile Picture</label>
                                         <div class="form-file">
                                             <input type="file" class="form-control" name="profile"
@@ -82,13 +82,27 @@
                                         </div>
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
-                                    <div class="col-xl-12 mb-3">
+                                    <div class="col-xl-4 mb-5 ">
+                                        <label for="validationCustom01">Profile</label>
+                                        <div class="form-file">
+                                            <img src="{{ url_for('static', filename=''+about.profile_image) }}"
+                                                            alt="" srcset="" width="50">    
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 mb-">
                                         <label for="validationCustom01">About Me Picture</label>
                                         <div class="form-file">
                                             <input type="file" class="form-control" name="about_picture"
                                                 id="validatedInputGroupCustomFile" accept="image/*" >
                                         </div>
                                         <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                    <div class="col-xl-4 mb-3 ">
+                                        <label for="validationCustom01">Image</label>
+                                        <div class="form-file">
+                                            <img src="{{ url_for('static', filename=''+about.image) }}"
+                                                            alt="" srcset="" width="50">    
+                                        </div>
                                     </div>
                                     <div class="col-xl-12 mb-3">
                                         <label for="validationCustom01">Resume</label>

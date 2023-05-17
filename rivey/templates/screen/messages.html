@@ -39,28 +39,32 @@
                                             <th class="bg-transparent border-bottom-0"
                                                 style="width: 15%;">Message</th>
                                             <th class="bg-transparent border-bottom-0"
+                                                style="width: 15%;">Date</th>
+
+                                            <th class="bg-transparent border-bottom-0"
                                                 style="width: 15%;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for message in messages %}
+
+                                        {% for i in range(0,messages|length) %}
+                                            
                                         <tr class="border-bottom">
                                             <td class="text-center">
                                                 <div class="mt-0 mt-sm-2 d-block">
                                                     <h6
                                                         class="mb-0 fs-14 fw-semibold">
-                                                        #98765490</h6>
+                                                        {{i+1}}
+                                                        </h6>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <span class="avatar bradius"
-                                                        style="background-image: url(assets/images/orders/10.jpg)"></span>
                                                     <div
                                                         class="ms-3 mt-0 mt-sm-2 d-block">
                                                         <h6
                                                             class="mb-0 fs-14 fw-semibold">
-                                                            Headsets</h6>
+                                                            {{messages[i].name}}</h6>
                                                     </div>
                                                 </div>
                                             </td>
@@ -70,20 +74,22 @@
                                                         class="mt-0 mt-sm-3 d-block">
                                                         <h6
                                                             class="mb-0 fs-14 fw-semibold">
-                                                            Cherry Blossom</h6>
+                                                            {{messages[i].email}}</h6>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><span class="mt-sm-2 d-block">30 Aug
-                                                    2021</span></td>
+                                            <td><span class="mt-sm-2 d-block">{{messages[i].subject}}</span></td>
                                             <td><span
-                                                    class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
+                                                    class="fw-semibold mt-sm-2 d-block">{{messages[i].message}}</span>
+                                            </td>
+                                            <td><span
+                                                    class="fw-semibold mt-sm-2 d-block">{{messages[i].date}}</span>
                                             </td>
                                             <td>
                                                 <div class="g-2">
                                                     <a class="btn text-danger btn-sm"
                                                         data-bs-toggle="tooltip"
-                                                        href="/delete-message/{{message.id}}"
+                                                        href="/delete-message/{{messages[i].id}}"
                                                         data-bs-original-title="Delete"><span
                                                             class="fe fe-trash-2 fs-14"></span></a>
                                                 </div>

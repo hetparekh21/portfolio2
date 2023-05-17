@@ -83,7 +83,11 @@
                                                 <div class="d-flex">
                                                     <div class="ms-3 mt-0 mt-sm-2 d-block">
                                                         <h6 class="mb-0 fs-14 fw-semibold">
-                                                            {{exp.end_date}}</h6>
+                                                            {% if exp.is_current %}
+                                                            Currently Working
+                                                            {% else %}
+                                                            {{exp.end_date }}
+                                                            {% endif %}</h6>
                                                     </div>
                                                 </div>
                                             </td>

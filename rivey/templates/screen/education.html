@@ -25,15 +25,18 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <a id="button" class="btn btn-primary mb-4 data-table-btn" href="/add-education">Add Education</a>
+                                <a id="button" class="btn btn-primary mb-4 data-table-btn" href="/add-education">Add
+                                    Education</a>
                                 <table id="example2" class="table table-bordered text-nowrap border-bottom">
                                     <thead class="border-top">
                                         <tr>
                                             <th class="bg-transparent border-bottom-0" style="width: 5%;">Sr No.</th>
                                             <th class="bg-transparent border-bottom-0" style="width: 15%;">School</th>
                                             <th class="bg-transparent border-bottom-0" style="width: 15%;">Feild</th>
-                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Description</th>
-                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Start Date</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Description
+                                            </th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Start Date
+                                            </th>
                                             <th class="bg-transparent border-bottom-0" style="width: 15%;">End Date</th>
                                             <th class="bg-transparent border-bottom-0" style="width: 15%;">Action</th>
                                         </tr>
@@ -83,15 +86,23 @@
                                                 <div class="d-flex">
                                                     <div class="ms-3 mt-0 mt-sm-2 d-block">
                                                         <h6 class="mb-0 fs-14 fw-semibold">
-                                                            {{e.end_date }}</h6>
+                                                            {% if e.is_current %}
+                                                            Currently Studying
+                                                            {% else %}
+                                                            {{e.end_date }}
+                                                            {% endif %}</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="g-2">
-                                                    <a class="btn text-primary btn-sm" data-bs-toggle="tooltip" data-bs-original-title="Edit" href="/edit-education/{{e.id}}"><span class="fe fe-edit fs-14"></span></a>
+                                                    <a class="btn text-primary btn-sm" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Edit"
+                                                        href="/edit-education/{{e.id}}"><span
+                                                            class="fe fe-edit fs-14"></span></a>
                                                     <a class="btn text-danger btn-sm" data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Delete" href="/delete-education/{{e.id}}"><span
+                                                        data-bs-original-title="Delete"
+                                                        href="/delete-education/{{e.id}}"><span
                                                             class="fe fe-trash-2 fs-14"></span></a>
                                                 </div>
                                             </td>
@@ -111,17 +122,19 @@
     </div>
 
     {% if message %}
-        <div class="position-fixed bottom-0 end-0 p-3">
-            <div class="toast align-items-center text-white bg-{{message['status']}} border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        {{message['message']}}
-                    </div>
-                    <button aria-label="Close" class="btn-close fs-20 ms-auto mt-2 pe-2" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div class="toast align-items-center text-white bg-{{message['status']}} border-0 show" role="alert"
+            aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{message['message']}}
                 </div>
+                <button aria-label="Close" class="btn-close fs-20 ms-auto mt-2 pe-2" data-bs-dismiss="toast"><span
+                        aria-hidden="true">×</span></button>
             </div>
         </div>
-        {% endif %} 
+    </div>
+    {% endif %}
 </div>
 <!--app-content closed-->
 {% endblock %}

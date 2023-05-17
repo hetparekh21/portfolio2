@@ -60,14 +60,14 @@
                                                     
                                                     <div class="ms-3 mt-0 mt-sm-2 d-block">
                                                         <h6 class="mb-0 fs-14 fw-semibold">
-                                                            {{service.description}}</h6>
+                                                            {{service.image}}</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="ms-3 mt-0 mt-sm-2 d-block">
-                                                        <img src="{{url_for('static', filename=''+service.image+'')}}"
+                                                        <img src="{{ url_for('static', filename=''+service.image) }}"
                                                             alt="" srcset="" width="50">
                                                     </div>
                                                 </div>

@@ -50,7 +50,7 @@ def login():
             # message = template.format(type(e).__name__, e.args)
             message = {
                 'status': 'danger',
-                'message': 'Invalid email or password' + str(e)
+                'message': 'Invalid email or password'
             }
 
     return render_template('auth/login.html', message=message)

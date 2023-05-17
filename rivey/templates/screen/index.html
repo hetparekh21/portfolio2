@@ -99,94 +99,79 @@
 
 
 
-            <!-- ROW-2 -->
-            <div class="row">
-                <div class="col-12 col-sm-12">
+            <!-- Row -->
+            <div class="row row-sm">
+                <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title mb-0">Today's Messages</h3>
-                        </div>
-                        <div class="card-body pt-4">
-                            <div class="grid-margin">
-                                <div class="">
-                                    <div class="panel panel-primary">
-                                        <div class="panel-body tabs-menu-body border-0 pt-0">
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="tab5">
-                                                    <div class="table-responsive">
-                                                        <table id="data-table"
-                                                            class="table table-bordered text-nowrap mb-0">
-                                                            <thead class="border-top">
-                                                                <tr>
-                                                                    <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 5%;">Sr No.</th>
-                                                                    <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 15%;">Name</th>
-                                                                    <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 15%;">Email</th>
-                                                                    <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 15%;">Subject</th>
-                                                                    <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 15%;">Message</th>
-                                                                    <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 15%;">Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                {% for m in message %}
-                                                                <tr class="border-bottom">
-                                                                    <td class="text-center">
-                                                                        <div class="mt-0 mt-sm-2 d-block">
-                                                                            <h6 class="mb-0 fs-14 fw-semibold">
-                                                                                {{m.id}}</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="d-flex">
-                                                                            <span class="avatar bradius"
-                                                                                style="background-image: url(assets/images/orders/10.jpg)"></span>
-                                                                            <div class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                <h6 class="mb-0 fs-14 fw-semibold">
-                                                                                    {{m.name}}</h6>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="d-flex">
-                                                                            <div class="mt-0 mt-sm-3 d-block">
-                                                                                <h6 class="mb-0 fs-14 fw-semibold">
-                                                                                    {{m.email}}</h6>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><span class="mt-sm-2 d-block">{{m.subject}}</span></td>
-                                                                    <td><span
-                                                                            class="fw-semibold mt-sm-2 d-block">{{m.message}}</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="g-2">
-                                                                            <a class="btn text-danger btn-sm" href="/delete_message/{{m.id}}"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-original-title="Delete"><span
-                                                                                    class="fe fe-trash-2 fs-14"></span></a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                {% endfor %}
-                                                            </tbody>
-                                                        </table>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example2" class="table table-bordered text-nowrap border-bottom">
+                                    <thead class="border-top">
+                                        <tr>
+                                            <th class="bg-transparent border-bottom-0"
+                                                style="width: 5%;">Sr No.</th>
+                                            <th class="bg-transparent border-bottom-0"
+                                                style="width: 15%;">Name</th>
+                                            <th class="bg-transparent border-bottom-0"
+                                                style="width: 15%;">Email</th>
+                                            <th class="bg-transparent border-bottom-0"
+                                                style="width: 15%;">Subject</th>
+                                            <th class="bg-transparent border-bottom-0"
+                                                style="width: 15%;">Message</th>
+                                            <th class="bg-transparent border-bottom-0"
+                                                style="width: 15%;">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for i in range(0,messages|length) %}
+                                            
+                                        <tr class="border-bottom">
+                                            <td class="text-center">
+                                                <div class="mt-0 mt-sm-2 d-block">
+                                                    <h6
+                                                        class="mb-0 fs-14 fw-semibold">
+                                                        {{i+1}}
+                                                        </h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div
+                                                        class="ms-3 mt-0 mt-sm-2 d-block">
+                                                        <h6
+                                                            class="mb-0 fs-14 fw-semibold">
+                                                            {{messages[i].name}}</h6>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div
+                                                        class="mt-0 mt-sm-3 d-block">
+                                                        <h6
+                                                            class="mb-0 fs-14 fw-semibold">
+                                                            {{messages[i].email}}</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="mt-sm-2 d-block">{{messages[i].subject}}</span></td>
+                                            <td><span
+                                                    class="fw-semibold mt-sm-2 d-block">{{messages[i].message}}</span>
+                                            </td>
+                                            <td><span
+                                                    class="fw-semibold mt-sm-2 d-block">{{messages[i].date}}</span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}    
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ROW-4 END -->
+            <!-- End Row -->
         </div>
         <!-- CONTAINER END -->
     </div>
@@ -232,9 +217,20 @@
 <script src="{{url_for('static', filename='assets/plugins/select2/select2.full.min.js')}}"></script>
 
 <!-- INTERNAL Data tables js-->
+<!-- DATA TABLE JS-->
 <script src="{{url_for('static', filename='assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{url_for('static', filename='assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/jszip.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
 <script src="{{url_for('static', filename='assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/responsive.bootstrap5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/table-data.js')}}"></script>
 
 <!-- INTERNAL APEXCHART JS -->
 <script src="{{url_for('static', filename='assets/js/apexcharts.js')}}"></script>

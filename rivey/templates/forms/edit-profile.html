@@ -30,8 +30,9 @@
                         <div class="card-body">
                             <div class="text-center chat-image mb-5">
                                 <div class="avatar avatar-xxl chat-profile mb-3 brround">
-                                    <img alt="avatar" src="{{url_for('static', filename='assets/images/users/7.jpg')}}" class="brround">
+                                    <img alt="avatar" src="{{url_for('static', filename=''+about.profile_image)}}" class="brround">
                                 </div>
+                                <div class="m-5">  </div>
                                 <div class="main-chat-msg-name">
                                         <h5 class="mb-1 text-dark fw-semibold">{{session['username']}}</h5>
                                 </div>

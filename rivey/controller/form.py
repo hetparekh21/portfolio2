@@ -14,7 +14,8 @@ form = Blueprint('form', __name__)
 @form.route('/edit-profile')
 @login_required
 def editProfile():
-    return render_template('forms/edit-profile.html')
+    about = About.query.filter_by(user_id=session['user_id']).first()
+    return render_template('forms/edit-profile.html', about=about)
 
 
 ###
@@ -58,7 +59,7 @@ def addEducation():
         except Exception as e:
             message = {
                 'status': 'danger',
-                'message': 'Error adding qualification : ' + str(e)
+                'message': 'Error adding qualification : ' 
             }
 
     return render_template('forms/education/add-education.html', message=message)
@@ -79,8 +80,12 @@ def addService():
             # fetch image extension
             image_ext = image.filename.split('.')[-1]
 
+            date = date
+            date = date.replace(':', '')
+            date = date.replace(' ', '_')
+
             filename = session['username'] + '_service_' + \
-                str(datetime.now()) + '.' + image_ext
+                date + '.' + image_ext
 
             image.save(os.path.join(
                 './rivey/static/uploads/services/', secure_filename(filename)))
@@ -100,7 +105,7 @@ def addService():
         except Exception as e:
             message = {
                 'status': 'danger',
-                'message': 'Error adding service : ' + str(e)
+                'message': 'Error adding service : ' 
             }
 
         return redirect(url_for('views.services'))
@@ -143,7 +148,7 @@ def addExperience():
         except Exception as e:
             message = {
                 'status': 'danger',
-                'message': 'Error adding Experience : ' + str(e)
+                'message': 'Error adding Experience : ' 
             }
 
     return render_template('forms/experience/add-experience.html', message=message)
@@ -174,12 +179,16 @@ def addAbout():
             image_filename = ""
             profile_image_filename = ""
 
+            date = str(datetime.now())
+            date = date.replace(':', '')
+            date = date.replace(' ', '_')
+
             if resume.filename != "":
                 # fetch image extension
                 resume_ext = resume.filename.split('.')[-1]
 
                 filename = session['username'] + '_resume_' + \
-                    str(datetime.now()) + '.' + resume_ext
+                    date + '.' + resume_ext
 
                 resume.save(os.path.join(
                     './rivey/static/uploads/resume/', secure_filename(filename)))
@@ -191,7 +200,7 @@ def addAbout():
                 image_ext = image.filename.split('.')[-1]
 
                 filename = session['username'] + '_image_' + \
-                    str(datetime.now()) + '.' + image_ext
+                    date + '.' + image_ext
 
                 image.save(os.path.join(
                     './rivey/static/uploads/about/', secure_filename(filename)))
@@ -203,7 +212,7 @@ def addAbout():
                 profile_image_ext = profile_image.filename.split('.')[-1]
 
                 filename = session['username'] + '_profile_image_' + \
-                    str(datetime.now()) + '.' + profile_image_ext
+                    date + '.' + profile_image_ext
 
                 profile_image.save(os.path.join(
                     './rivey/static/uploads/profile_image/', secure_filename(filename)))
@@ -241,7 +250,7 @@ def addAbout():
             return redirect(url_for('form.addAbout'))
     else:
         about = About.query.filter_by(user_id=userId).first()
-        return render_template('forms/about_me//portfolio/about', about=about)
+        return render_template('forms/about_me/about.html', about=about)
 
 
 @form.route('/social', methods=['GET', 'POST'])
@@ -287,7 +296,7 @@ def addSocial():
 
             return redirect(url_for('form.addSocial'))
         except Exception as e:
-            print(e)
+            
             return redirect(url_for('form.addSocial'))
     else:
         social = Social.query.filter_by(user_id=userId).first()
@@ -395,8 +404,12 @@ def addProject(id):
                     # fetch image extension
                     image_ext = image.filename.split('.')[-1]
 
+                    date = str(datetime.now())
+                    date = date.replace(':', '')
+                    date = date.replace(' ', '_')
+
                     filename = session['username'] + '_project_' + \
-                        str(datetime.now()) + '.' + image_ext
+                        date + '.' + image_ext
 
                     image.save(os.path.join(
                         './rivey/static/uploads/projects/', secure_filename(filename)))
@@ -410,8 +423,12 @@ def addProject(id):
                     # fetch image extension
                     image_ext = image.filename.split('.')[-1]
 
+                    date = str(datetime.now())
+                    date = date.replace(':', '')    
+                    date = date.replace(' ', '_')
+
                     filename = session['username'] + '_project_' + \
-                        str(datetime.now()) + '.' + image_ext
+                        date + '.' + image_ext
 
                     image.save(os.path.join(
                         './rivey/static/uploads/projects/', secure_filename(filename)))
@@ -425,7 +442,7 @@ def addProject(id):
 
             return redirect(url_for('views.projects'))
         except Exception as e:
-            print(e)
+            
             return redirect(url_for('form.addProject'))
     else:
         # fetch project from id
@@ -548,7 +565,7 @@ def addSkill(id):
 
             return redirect(url_for('views.skills'))
         except Exception as e:
-            print(e)
+            
             return redirect(url_for('form.addSkill'))
     else:
         # fetch skill from id
@@ -567,7 +584,7 @@ def addSkill(id):
 
                 return render_template('forms/skills/add-skill.html', skill=skill, cat=cat)
             except Exception as e:
-                print(e)
+                
 
                 return redirect(url_for('views.skills'))
         else:
@@ -590,6 +607,10 @@ def websiteSettings():
             logo = request.files['logo']
             favicon = request.files['favicon']
 
+            date = str(datetime.now())
+            date = date.replace(':', '')
+            date = date.replace(' ', '_')
+
             logo_filename = ""
             favicon_filename = ""
 
@@ -598,7 +619,7 @@ def websiteSettings():
                 logo_ext = logo.filename.split('.')[-1]
 
                 filename = session['username'] + '_logo_' + \
-                    str(datetime.now()) + '.' + logo_ext
+                    date + '.' + logo_ext
 
                 logo.save(os.path.join(
                     './rivey/static/uploads/logo/', secure_filename(filename)))
@@ -610,7 +631,7 @@ def websiteSettings():
                 favicon_ext = favicon.filename.split('.')[-1]
 
                 filename = session['username'] + '_favicon_' + \
-                    str(datetime.now()) + '.' + favicon_ext
+                    date + '.' + favicon_ext
 
                 favicon.save(os.path.join(
                     './rivey/static/uploads/favicon/', secure_filename(filename)))
@@ -738,7 +759,7 @@ def editEducation(id):
         except Exception as e:
             message = {
                 'status': 'danger',
-                'message': 'Error updating service: ' + str(e)
+                'message': 'Error updating service: ' 
             }
         return redirect(url_for('views.education'))
     else:
@@ -803,10 +824,10 @@ def editExperience(id):
                 'message': 'Experience updated successfully'
             }
         except Exception as e:
-            print(e)
+            
             message = {
                 'status': 'danger',
-                'message': 'Error updating experience: ' + str(e)
+                'message': 'Error updating experience: ' 
             }
         return redirect(url_for('views.experience'))
     else:
@@ -837,12 +858,16 @@ def editService(id):
             serviceId = request.form['service_id']
             image = request.files['image']
 
+            date = str(datetime.now())
+            date = date.replace(':', '')
+            date = date.replace(' ', '_')
+
             if image.filename != "":
                 # fetch image extension
                 image_ext = image.filename.split('.')[-1]
 
                 filename = session['username'] + '_service_' + \
-                    str(datetime.now()) + '.' + image_ext
+                    date + '.' + image_ext
 
                 image.save(os.path.join(
                     './rivey/static/uploads/services/', secure_filename(filename)))
@@ -866,7 +891,7 @@ def editService(id):
         except Exception as e:
             message = {
                 'status': 'danger',
-                'message': 'Error updating service: ' + str(e)
+                'message': 'Error updating service: ' 
             }
         return redirect(url_for('views.services'))
     else:
@@ -906,7 +931,7 @@ def deleteEducation(id):
     except Exception as e:
         message = {
             'status': 'danger',
-            'message': 'Error deleting qualification: ' + str(e)
+            'message': 'Error deleting qualification: ' 
         }
 
     return redirect(url_for('views.education'))
@@ -928,7 +953,7 @@ def deleteExperience(id):
     except Exception as e:
         message = {
             'status': 'danger',
-            'message': 'Error deleting experience: ' + str(e)
+            'message': 'Error deleting experience: ' 
         }
 
     return redirect(url_for('views.experience'))
@@ -950,7 +975,7 @@ def deleteService(id):
     except Exception as e:
         message = {
             'status': 'danger',
-            'message': 'Error deleting service: ' + str(e)
+            'message': 'Error deleting service: ' 
         }
 
     return redirect(url_for('views.services'))
@@ -972,7 +997,7 @@ def deleteProject(id):
     except Exception as e:
         message = {
             'status': 'danger',
-            'message': 'Error deleting project: ' + str(e)
+            'message': 'Error deleting project: ' 
         }
 
     return redirect(url_for('views.projects'))
@@ -994,7 +1019,7 @@ def deleteSkill(id):
     except Exception as e:
         message = {
             'status': 'danger',
-            'message': 'Error deleting skill: ' + str(e)
+            'message': 'Error deleting skill: ' 
         }
 
     return redirect(url_for('views.skills'))
@@ -1017,7 +1042,7 @@ def deleteSkillCategory(id):
     except Exception as e:
         message = {
             'status': 'danger',
-            'message': 'Error deleting skill category: ' + str(e)
+            'message': 'Error deleting skill category: ' 
         }
 
     return redirect(url_for('views.skill_category'))
@@ -1041,7 +1066,7 @@ def deleteProjectCategory(id):
     except Exception as e:
         message = {
             'status': 'danger',
-            'message': 'Error deleting project category: ' + str(e)
+            'message': 'Error deleting project category: ' 
         }
 
     return redirect(url_for('views.project_category'))
@@ -1065,7 +1090,7 @@ def deleteMessage(id):
     except Exception as e:
         message = {
             'status': 'danger',
-            'message': 'Error deleting message: ' + str(e)
+            'message': 'Error deleting message: ' 
         }
 
     return redirect(url_for('views.messages'))
