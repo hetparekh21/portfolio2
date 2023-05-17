@@ -241,7 +241,7 @@ def addAbout():
             return redirect(url_for('form.addAbout'))
     else:
         about = About.query.filter_by(user_id=userId).first()
-        return render_template('forms/about_me/about.html', about=about)
+        return render_template('forms/about_me//portfolio/about', about=about)
 
 
 @form.route('/social', methods=['GET', 'POST'])

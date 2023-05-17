@@ -29,11 +29,13 @@ def create_app():
     from .controller.form import form
     from .controller.error import error
     from .controller.auth import authv
+    from .controller.portfolio import portfolio
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(form, url_prefix='/')
     app.register_blueprint(error, url_prefix='/')
     app.register_blueprint(authv, url_prefix='/')
+    app.register_blueprint(portfolio, url_prefix='/portfolio')
 
     # calling create_database function
     create_database(app)
