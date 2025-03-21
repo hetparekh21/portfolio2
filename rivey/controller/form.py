@@ -175,6 +175,7 @@ def addAbout():
             profile_image = request.files['profile']
             age = request.form['age']
 
+
             resume_filename = ""
             image_filename = ""
             profile_image_filename = ""
@@ -208,6 +209,14 @@ def addAbout():
                 image_filename = 'uploads/about/' + filename
 
             if profile_image.filename != "":
+
+                directory = './rivey/static/uploads/profile_image/'
+
+                if os.access(directory, os.W_OK | os.X_OK):
+                    print("You have permission to create a file in this directory.")
+                else:
+                    print("You do not have permission to create a file in this directory.")
+
                 # fetch image extension
                 profile_image_ext = profile_image.filename.split('.')[-1]
 

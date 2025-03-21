@@ -83,7 +83,8 @@ def signup():
                     'message': 'Account created successfully, please check your email inbox to verify your account'
                 }
                 return render_template('auth/login.html', message=message)
-            except:
+            except Exception as e:
+                print(e)
                 message = {
                     'status': 'danger',
                     'message': 'Something went wrong, please try again'

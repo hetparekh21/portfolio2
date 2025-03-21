@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from rivey import db
+from datetime import date
 from rivey.models import *
 
 portfolio = Blueprint('portfolio', __name__)
@@ -10,6 +11,21 @@ portfolio = Blueprint('portfolio', __name__)
 def portfolio_page(id):
     userId = id
 
+    # make an entry in analytics for today date
+    today = date.today()
+    
+    # get the entry for today
+    analytics = Analytics.query.filter(db.func.date(Analytics.date) == today, Analytics.user_id == int(userId)).first()
+
+    # if analytics does not exist, create a new analytics
+    if analytics is None:
+        analytics = Analytics(date=today, count=0, user_id=userId)
+        db.session.add(analytics)
+        print(f"New entry created for today ({today}). using query and conditional creation.")
+
+    analytics.count += 1
+    db.session.commit()
+    
     # fetch data from about
     about = About.query.filter_by(user_id=int(userId)).first()
     social = Social.query.filter_by(user_id=int(userId)).first()
@@ -80,4 +96,3 @@ def add_message():
         
 
     return redirect(url_for('portfolio.contact_page', id=userId))
-    

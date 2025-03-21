@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <!--app-content open-->
 <div class="main-content app-content mt-0">
     <div class="side-app">
@@ -20,6 +23,16 @@
             </div>
             <!-- PAGE-HEADER END -->
 
+            <!-- Row -->
+            <div class="row row-sm">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <canvas id="analyticsChart" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- ROW-1 -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
@@ -108,62 +121,49 @@
                                 <table id="example2" class="table table-bordered text-nowrap border-bottom">
                                     <thead class="border-top">
                                         <tr>
-                                            <th class="bg-transparent border-bottom-0"
-                                                style="width: 5%;">Sr No.</th>
-                                            <th class="bg-transparent border-bottom-0"
-                                                style="width: 15%;">Name</th>
-                                            <th class="bg-transparent border-bottom-0"
-                                                style="width: 15%;">Email</th>
-                                            <th class="bg-transparent border-bottom-0"
-                                                style="width: 15%;">Subject</th>
-                                            <th class="bg-transparent border-bottom-0"
-                                                style="width: 15%;">Message</th>
-                                            <th class="bg-transparent border-bottom-0"
-                                                style="width: 15%;">Date</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 5%;">Sr No.</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Name</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Email</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Subject</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Message</th>
+                                            <th class="bg-transparent border-bottom-0" style="width: 15%;">Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         {% for i in range(0,messages|length) %}
-                                            
+
                                         <tr class="border-bottom">
                                             <td class="text-center">
                                                 <div class="mt-0 mt-sm-2 d-block">
-                                                    <h6
-                                                        class="mb-0 fs-14 fw-semibold">
+                                                    <h6 class="mb-0 fs-14 fw-semibold">
                                                         {{i+1}}
-                                                        </h6>
+                                                    </h6>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <div
-                                                        class="ms-3 mt-0 mt-sm-2 d-block">
-                                                        <h6
-                                                            class="mb-0 fs-14 fw-semibold">
+                                                    <div class="ms-3 mt-0 mt-sm-2 d-block">
+                                                        <h6 class="mb-0 fs-14 fw-semibold">
                                                             {{messages[i].name}}</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <div
-                                                        class="mt-0 mt-sm-3 d-block">
-                                                        <h6
-                                                            class="mb-0 fs-14 fw-semibold">
+                                                    <div class="mt-0 mt-sm-3 d-block">
+                                                        <h6 class="mb-0 fs-14 fw-semibold">
                                                             {{messages[i].email}}</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td><span class="mt-sm-2 d-block">{{messages[i].subject}}</span></td>
-                                            <td><span
-                                                    class="fw-semibold mt-sm-2 d-block">{{messages[i].message}}</span>
+                                            <td><span class="fw-semibold mt-sm-2 d-block">{{messages[i].message}}</span>
                                             </td>
-                                            <td><span
-                                                    class="fw-semibold mt-sm-2 d-block">{{messages[i].date}}</span>
+                                            <td><span class="fw-semibold mt-sm-2 d-block">{{messages[i].date}}</span>
                                             </td>
                                         </tr>
-                                        {% endfor %}    
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -181,6 +181,43 @@
 
 
 {% block js %}
+
+<script>
+
+    // unpack flask data
+    const analyticsData =  JSON.parse( '{{ data["analytics_data"] | tojson | safe }}' );
+    console.log(analyticsData);
+
+    // Extract dates and views
+    const labels = Object.keys(analyticsData);
+    const views = Object.values(analyticsData);
+
+    const ctx = document.getElementById('analyticsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Views',
+                data: views,
+                borderColor: 'cyan',
+                borderWidth: 2,
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: { title: { display: true, text: 'Date' } },
+                y: { title: { display: true, text: 'Views' }, beginAtZero: true }
+            }
+        }
+    });
+
+
+</script>
+
 <!-- JQUERY JS -->
 <script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
 

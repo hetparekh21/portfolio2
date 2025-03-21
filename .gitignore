@@ -1,0 +1,4 @@
+instance/
+rivey/__pycache__/
+rivey/controller/__pycache__/
+*.pyc
